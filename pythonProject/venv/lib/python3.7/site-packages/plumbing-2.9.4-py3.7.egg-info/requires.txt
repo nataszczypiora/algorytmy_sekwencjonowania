@@ -1,0 +1,9 @@
+autopaths>=1.4.2
+six
+pandas
+numpy
+matplotlib
+retry
+tzlocal
+packaging
+parsesetup

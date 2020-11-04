@@ -1,0 +1,8 @@
+plumbing>=2.8.5
+autopaths>=1.4.4
+biopython
+numpy
+sh
+tqdm
+matplotlib
+regex
