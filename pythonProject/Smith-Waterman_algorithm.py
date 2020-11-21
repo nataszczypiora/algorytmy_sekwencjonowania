@@ -1,10 +1,23 @@
 import os
 import tracemalloc
+import time
 
-tracemalloc.start()
-stream = os.popen('fasta36-36.3.8/bin/ssearch36 seq1.fasta seq2.fasta')
-current, peak = tracemalloc.get_traced_memory()
-output = stream.read()
-print(output)
-print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
-tracemalloc.stop()
+
+def smith_waterman_algorithm(a, b):
+    command = 'fasta36-36.3.8/bin/ssearch36' + ' ./resource/fasta' + str(a) +'.fasta' + ' ./resource/fasta' + str(b) +'.fasta'
+    stream = os.popen(command)
+    output = stream.read()
+
+
+def smith_waterman_test():
+    start_time = time.time()
+    tracemalloc.start()
+    for i in range(93):
+        smith_waterman_algorithm(i, i + 1)
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"Current memory usage is {current / 10 ** 6}MB; Peak was {peak / 10 ** 6}MB")
+    tracemalloc.stop()
+    print("--- %s seconds ---" % (time.time() - start_time))
+
+
+smith_waterman_test()
